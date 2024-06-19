@@ -1,3 +1,4 @@
+const searchInput = document.getElementById('search-input');
 const searchBtn = document.getElementById('search-btn');
 const mealList = document.getElementById('meal');
 const mealDetailsContent = document.querySelector('.meal-details-content');
@@ -8,6 +9,11 @@ searchBtn.addEventListener('click', getMealList);
 mealList.addEventListener('click', getMealRecipe);
 recipeCloseBtn.addEventListener('click', () => {
     mealDetailsContent.parentElement.classList.remove('showRecipe');
+});
+searchInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      getMealList();
+    }
 });
 
 
@@ -32,6 +38,8 @@ function getMealList(){
                     </div>
                 `;
             });
+            const title = document.querySelector('.title2');
+            title.innerHTML='Your Search Results :'
             mealList.classList.remove('notFound');
         } else{
             html = "Sorry, we didn't find any meal!";
